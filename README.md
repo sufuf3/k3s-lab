@@ -37,7 +37,9 @@ vagrant ssh node1
 ### Install
 
 ```sh
+sudo su -
 export NODE_TOKEN=...
+wget https://raw.githubusercontent.com/sufuf3/k3s-lab/master/install-k3s-node.sh
 sh install-k3s-node.sh ${NODE_TOKEN}
 ```
 e.g.
