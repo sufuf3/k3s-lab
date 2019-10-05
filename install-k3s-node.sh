@@ -18,6 +18,6 @@ sudo usermod -aG docker $USER
 
 # Install K3s-angent
 IPADDR=$(ip a show enp0s8 | grep "inet " | awk '{print $2}' | cut -d / -f1)
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v0.9.0 INSTALL_K3S_EXEC="--docker --node-ip=${IPADDR} --flannel-iface=enp0s8" K3S_URL=https://192.168.0.200:6443 K3S_TOKEN=$NODE_TOKEN sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v0.9.1 INSTALL_K3S_EXEC="--docker --node-ip=${IPADDR} --flannel-iface=enp0s8" K3S_URL=https://192.168.0.200:6443 K3S_TOKEN=$NODE_TOKEN sh -
 systemctl status k3s-agent --no-pager
 #journalctl -u k3s-agent
