@@ -1,6 +1,8 @@
 default_box = 'ubuntu/bionic64'
 
 Vagrant.configure(2) do |config|
+  config.vm.box_check_update = false
+  config.vbguest.auto_update = false
   config.vm.define 'master' do |master|
     master.vm.box = default_box
     master.vm.hostname = "master"
@@ -40,5 +42,8 @@ Vagrant.configure(2) do |config|
       IPADDR=$(ip a show enp0s8 | grep "inet " | awk '{print $2}' | cut -d / -f1)
     SHELL
   end
+
+  config.vm.provision "file", source: "install-k3s-server.sh", destination: "install-k3s-server.sh"
+  config.vm.provision "file", source: "install-k3s-node.sh", destination: "install-k3s-node.sh"
 
 end
