@@ -34,7 +34,7 @@ Vagrant.configure(2) do |config|
     node1.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
     node1.vm.network "forwarded_port", guest: 22, host: 2001
     node1.vm.provider "virtualbox" do |v|
-      v.memory = "1024"
+      v.memory = "800"
       v.name = "node1"
       end
 
