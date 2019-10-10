@@ -1,45 +1,55 @@
 # K3s Lab using Vagrant
 
-## Setup Vagrant VMs
+## Quick-Start
+
 
 ```sh
-vagrant up
+sh deploy-vagrant.sh
+```
+After execute this script, you will see the string like this `export NODE_TOKEN=K10571d20534c867fe6ce8d...`.
+Copy it and do as the following
+
+```sh
+vageant ssh node1
+sudo su -
+cd /home/vagrant/
+export NODE_TOKEN=K10571d20534c867fe6ce8d...
+sh install-k3s-node.sh ${NODE_TOKEN}
 ```
 
-## On Server
+After all, ssh the master node, and you can verifite the k3s cluster.
 
-### Enter to Master Node
+## Setup a Cluster
+
+### On Server
 
 ```sh
 vagrant ssh master
 ```
 
-### Intall
+#### Intall
 
 ```sh
 sudo su -
-wget https://raw.githubusercontent.com/sufuf3/k3s-lab/master/install-k3s-server.sh
 sh install-k3s-server.sh
 ```
-### Uninstall
+#### Uninstall
 
 ```sh
 systemctl stop k3s && /usr/local/bin/k3s-uninstall.sh
 ```
 
-## On Agent
-
-### Enter to Agent Node
+### On Agent
 
 ```sh
 vagrant ssh node1
 ```
-### Install
+
+#### Install
 
 ```sh
 sudo su -
 export NODE_TOKEN=...
-wget https://raw.githubusercontent.com/sufuf3/k3s-lab/master/install-k3s-node.sh
 sh install-k3s-node.sh ${NODE_TOKEN}
 ```
 e.g.
